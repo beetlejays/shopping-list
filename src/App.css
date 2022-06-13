@@ -1,0 +1,10 @@
+.App {
+  max-width: 800px;
+  margin: auto;
+}
+
+h1,
+h2 {
+  color: white;
+  font-family: sans-serif;
+}

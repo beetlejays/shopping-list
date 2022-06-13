@@ -1,0 +1,28 @@
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 2rem 0;
+}
+
+.tag__list {
+  display: flex;
+  font-size: 1.2rem;
+  font-family: sans-serif;
+  font-weight: 200;
+  cursor: pointer;
+  padding: 0.6rem 1.3rem;
+  color: white;
+  border-radius: 14px;
+  background-color: rgb(68, 68, 120);
+  border: none;
+  transition: 0.4s;
+}
+
+.tag__list:hover {
+  background-color: rgb(113, 85, 174);
+}
+
+.tag__list--active {
+  background-color: palevioletred;
+}

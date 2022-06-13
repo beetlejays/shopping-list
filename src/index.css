@@ -1,0 +1,5 @@
+@import "./Components/Tag/Tag.css";
+
+body {
+  background-color: rgb(44, 49, 61);
+}
