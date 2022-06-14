@@ -6,8 +6,7 @@ import { useEffect, useState } from "react";
 export default function App() {
   const [productList, setProductList] = useState([]);
   const [productSearch, setProductSearch] = useState("");
-  // const [productSelected, setProductSelected] = useState([]);
-  const [selectProduct, setSelectProduct] = useState(false);
+  const [selectProduct, setSelectProduct] = useState();
 
   useEffect(() => {
     fetch("https://fetch-me.vercel.app/api/shopping/items")
@@ -45,7 +44,13 @@ export default function App() {
             product.name.en.toLowerCase().includes(productSearch)
           )
           .map((product) => (
-            <button type="button">{product.name.en}</button>
+            <button
+              type="button"
+              key={product._id}
+              onClick={onHandleSelectProduct}
+            >
+              {product.name.en}
+            </button>
           ))}
       </div>
     </div>
@@ -58,9 +63,9 @@ export default function App() {
     setProductSearch(event.target.value);
   }
 
-  //// Handles onClick Tags
+  //// Handles saved onClick items
 
-  function handleSelectProduct() {
-    setSelectProduct(!selectProduct);
+  function onHandleSelectProduct(event) {
+    setSelectProduct(console.log(event.target));
   }
 }
