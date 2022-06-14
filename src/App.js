@@ -47,7 +47,7 @@ export default function App() {
             <button
               type="button"
               key={product._id}
-              onClick={onHandleSelectProduct}
+              onClick={() => onHandleSelectProduct(product)}
             >
               {product.name.en}
             </button>
@@ -65,7 +65,7 @@ export default function App() {
 
   //// Handles saved onClick items
 
-  function onHandleSelectProduct(event) {
-    setSelectProduct(console.log(event.target));
+  function onHandleSelectProduct(product) {
+    setSelectProduct(console.log(product));
   }
 }
