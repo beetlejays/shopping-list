@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 export default function App() {
   const [productList, setProductList] = useState([]);
   const [productSearch, setProductSearch] = useState("");
-  const [selectProduct, setSelectProduct] = useState([]);
+  const [shoppingList, setShoppingList] = useState([]);
 
   useEffect(() => {
     fetch("https://fetch-me.vercel.app/api/shopping/items")
@@ -26,7 +26,7 @@ export default function App() {
           aria-labelledby="Search-Product"
         ></label>
         <input
-          onChange={onHandleSubmit}
+          onChange={handleSubmit}
           type="text"
           id="Search-Product"
           name="product-search"
@@ -51,7 +51,7 @@ export default function App() {
             <button
               type="button"
               key={product._id}
-              onClick={() => onHandleSelectProduct(product)}
+              onClick={() => selectProduct(product)}
             >
               {product.name.en}
             </button>
@@ -62,20 +62,14 @@ export default function App() {
 
   //// Handles Form Input
 
-  function onHandleSubmit(event) {
+  function handleSubmit(event) {
     event.preventDefault();
     setProductSearch(event.target.value);
   }
 
   //// Handles saved onClick items
 
-  function onHandleSelectProduct(product) {
-    const foundShoppingItem = productList.filter(
-      (foundItem) => foundItem._id === product._id
-    );
-    if (foundShoppingItem.length === 0) {
-      setSelectProduct([...selectProduct, product]);
-    }
-    // console.log(product._id);
+  function selectProduct(product) {
+    console.log(product._id);
   }
 }
