@@ -40,7 +40,12 @@ export default function App() {
       <p>Product here</p>
       <hr />
 
-      <h2>Shopping List</h2>
+      <p>
+        {" "}
+        {shoppingList.map((item) => (
+          <li>{item.name.en}</li>
+        ))}{" "}
+      </p>
 
       <div className="tags">
         {productList
@@ -60,16 +65,22 @@ export default function App() {
     </div>
   );
 
-  //// Handles Form Input
+  /////////////// Handles Form Input
 
   function handleSubmit(event) {
     event.preventDefault();
     setProductSearch(event.target.value);
   }
 
-  //// Handles saved onClick items
+  ///////////////  Handles saved onClick items
 
   function selectProduct(product) {
-    console.log(product._id);
+    const foundProduct = shoppingList.filter(
+      (shoppingItem) => shoppingItem._id === product._id
+    );
+    if (foundProduct.length === 0) {
+      setShoppingList([...shoppingList, product]);
+    }
+    console.log(product);
   }
 }
