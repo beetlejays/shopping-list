@@ -40,12 +40,13 @@ export default function App() {
       <p>Product here</p>
       <hr />
 
-      <p>
-        {" "}
+      <ul>
         {shoppingList.map((item) => (
-          <li>{item.name.en}</li>
+          <button type="button" key={item._id}>
+            {item.name.en}
+          </button>
         ))}{" "}
-      </p>
+      </ul>
 
       <div className="tags">
         {productList
@@ -81,6 +82,6 @@ export default function App() {
     if (foundProduct.length === 0) {
       setShoppingList([...shoppingList, product]);
     }
-    console.log(product);
+    // console.log(product);
   }
 }
