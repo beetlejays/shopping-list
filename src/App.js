@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 export default function App() {
   const [productList, setProductList] = useState([]);
   const [productSearch, setProductSearch] = useState("");
-  const [selectProduct, setSelectProduct] = useState([]);
+  const [shoppingList, setShoppingList] = useState([]);
 
   useEffect(() => {
     fetch("https://fetch-me.vercel.app/api/shopping/items")
@@ -26,7 +26,7 @@ export default function App() {
           aria-labelledby="Search-Product"
         ></label>
         <input
-          onChange={onHandleSubmit}
+          onChange={handleSubmit}
           type="text"
           id="Search-Product"
           name="product-search"
@@ -40,7 +40,13 @@ export default function App() {
       <p>Product here</p>
       <hr />
 
-      <h2>Shopping List</h2>
+      <ul>
+        {shoppingList.map((item) => (
+          <button type="button" key={item._id}>
+            {item.name.en}
+          </button>
+        ))}{" "}
+      </ul>
 
       <div className="tags">
         {productList
@@ -51,7 +57,7 @@ export default function App() {
             <button
               type="button"
               key={product._id}
-              onClick={() => onHandleSelectProduct(product)}
+              onClick={() => selectProduct(product)}
             >
               {product.name.en}
             </button>
@@ -60,16 +66,22 @@ export default function App() {
     </div>
   );
 
-  //// Handles Form Input
+  /////////////// Handles Form Input
 
-  function onHandleSubmit(event) {
+  function handleSubmit(event) {
     event.preventDefault();
     setProductSearch(event.target.value);
   }
 
-  //// Handles saved onClick items
+  ///////////////  Handles saved onClick items
 
-  function onHandleSelectProduct(product) {
-    console.log(product._id);
+  function selectProduct(product) {
+    const foundProduct = shoppingList.filter(
+      (shoppingItem) => shoppingItem._id === product._id
+    );
+    if (foundProduct.length === 0) {
+      setShoppingList([...shoppingList, product]);
+    }
+    // console.log(product);
   }
 }
