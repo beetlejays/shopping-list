@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 export default function App() {
   const [productList, setProductList] = useState([]);
   const [productSearch, setProductSearch] = useState("");
-  const [selectProduct, setSelectProduct] = useState();
+  const [selectProduct, setSelectProduct] = useState([]);
 
   useEffect(() => {
     fetch("https://fetch-me.vercel.app/api/shopping/items")
@@ -34,6 +34,10 @@ export default function App() {
         <button type="submit">Search</button>
       </form>
 
+      <hr />
+
+      <h2>Current Shopping List</h2>
+      <p>Product here</p>
       <hr />
 
       <h2>Shopping List</h2>
@@ -66,6 +70,6 @@ export default function App() {
   //// Handles saved onClick items
 
   function onHandleSelectProduct(product) {
-    setSelectProduct(console.log(product));
+    console.log(product._id);
   }
 }
