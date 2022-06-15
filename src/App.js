@@ -70,6 +70,12 @@ export default function App() {
   //// Handles saved onClick items
 
   function onHandleSelectProduct(product) {
-    console.log(product._id);
+    const foundShoppingItem = productList.filter(
+      (foundItem) => foundItem._id === product._id
+    );
+    if (foundShoppingItem.length === 0) {
+      setSelectProduct([...selectProduct, product]);
+    }
+    // console.log(product._id);
   }
 }
